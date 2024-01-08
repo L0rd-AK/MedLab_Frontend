@@ -12,8 +12,8 @@ const Banner = ({ setSearchJob }) => {
             })
     }
     return (
-        <div className="hero h-[650px] mt-5 lg:mt-16" style={{ backgroundImage: 'url(https://mida.peerduck.com/wp-content/uploads/2023/03/i4tug4.png)', }}>
-            <div className="hero-overlay bg-opacity-60"></div>
+        <div className="hero h-[650px] mt-5 rounded-lg" style={{ backgroundImage: 'url(https://mida.peerduck.com/wp-content/uploads/2023/03/i4tug4.png)', }}>
+            <div className="hero-overlay bg-opacity-30 rounded-lg"></div>
             <img className="h-[650px] w-full" src="https://i.ibb.co/bQN7KHm/banner-bg.png" alt="" />
             <div className="flex gap-5">
                 <div className="hero-content text-left text-neutral-content">
@@ -22,7 +22,8 @@ const Banner = ({ setSearchJob }) => {
                         <p className="mb-5 text-black font-semibold">Get the answers you need for a healthier you at our <br /> medical diagnostic center.</p>
                         <p className="mb-5 text-black font-semibold">Use the Coupon code <span className="font-bold text-[#48eaffcb]">MedLab20</span> to get 20% of on any of our Services.</p>
                         <div className="">
-                            <button className="btn bg-[#48eaffcb] px-5 py-2 border-none font-bold text-white hover:btn-outline mt-5 lg:mt-0">MedLab20</button>
+                            <button className="btn bg-[#48eaffcb] px-5 py-2 border-none font-bold text-white hover:btn-outline mt-5 lg:mt-0">Use Coupon MadLab20</button>
+                            <button className="ml-5 btn bg-[#13e3ff96] px-5 py-2 border-none font-bold text-white hover:btn-outline mt-5 lg:mt-0">All Test</button>
                         </div>
                     </div>
                 </div>
