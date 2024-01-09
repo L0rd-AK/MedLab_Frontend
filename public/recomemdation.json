@@ -1,0 +1,37 @@
+[
+    {
+      "_id": 1,
+      "healthTipTitle": "Boost Your Immunity with These Simple Tips",
+      "tipsDescription": "Elevate your immune system with these practical strategies to stay healthy and combat potential illnesses. Maintain a balanced diet rich in fruits, vegetables, and whole grains. Engage in regular physical activity to enhance blood circulation and overall wellness. Prioritize quality sleep to allow your body to repair and rejuvenate. Practice stress management techniques to reduce inflammation and boost immunity.",
+      "doctorName": "Dr. Emily Johnson",
+      "doctorImg": "https://i.ibb.co/tc0xGsk/doc-5.jpg"
+    },
+    {
+      "_id": 124,
+      "healthTipTitle": "Maintain a Healthy Gut for Overall Well-being",
+      "tipsDescription": "Nurture a healthy gut microbiome to support overall health and well-being. Consume prebiotic and probiotic-rich foods like yogurt, kefir, and fermented vegetables. Maintain a balanced gut flora with regular exercise and a healthy diet. Avoid excessive consumption of processed foods and sugary drinks.",
+      "doctorName": "Dr. Michael Peterson",
+      "doctorImg": "https://i.ibb.co/NCb9Fgt/doc-4.jpg"
+    },
+    {
+      "_id": 12,
+      "healthTipTitle": "Prioritize Quality Sleep for Restful Nights",
+      "tipsDescription": "Ensure you get adequate sleep to support physical and mental health. Aim for 7-8 hours of quality sleep each night. Establish a consistent sleep schedule to regulate your body's natural sleep-wake cycle. Create a relaxing bedtime routine to prepare your mind and body for sleep. Avoid caffeine and screen time before bed to promote melatonin production.",
+      "doctorName": "Dr. Sophia Miller",
+      "doctorImg": "https://i.ibb.co/gJqLGFf/doc-3.jpg"
+    },
+    {
+      "_id": 13,
+      "healthTipTitle": "Manage Stress Effectively for a Healthier You",
+      "tipsDescription": "Effectively manage stress to promote emotional and physical well-being. Identify your stress triggers and develop coping mechanisms to manage them effectively. Engage in relaxation techniques like deep breathing, meditation, and yoga. Practice mindfulness to stay present and grounded. Seek professional help if stress is overwhelming your daily life.",
+      "doctorName": "Dr. David Williams",
+      "doctorImg": "https://i.ibb.co/BNy1GwH/doc-2.jpg"
+    },
+    {
+      "_id": 134,
+      "healthTipTitle": "Nourish Your Body with a Nutrient-Rich Diet",
+      "tipsDescription": "Adopt a nutrient-rich diet that provides your body with essential vitamins, minerals, and fiber. Consume plenty of fruits, vegetables, whole grains, and lean protein sources. Limit processed foods, sugary drinks, and excessive saturated and unhealthy fats. Stay hydrated by drinking plenty of water throughout the day.",
+      "doctorName": "Dr. Sarah Anderson",
+      "doctorImg": "https://i.ibb.co/ZJLykKf/doc-1.jpg"
+    }
+  ]

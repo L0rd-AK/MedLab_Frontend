@@ -4,7 +4,7 @@ const Banner = ({ setSearchJob }) => {
         e.preventDefault();
         const form = new FormData(e.currentTarget);
         const searchValue = form.get('home-input');
-        fetch(`https://jobdoc.vercel.app/searched-jobs/${searchValue}`)
+        fetch(`http://localhost:5173/searched-jobs/${searchValue}`)
             .then(res => res.json())
             .then(data => {
                 console.log(data);

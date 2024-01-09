@@ -21,7 +21,7 @@ const Footer = () => {
                     <a className="link link-hover">Press kit</a>
                 </nav>
                 <form>
-                    <header className="footer-title">Newsletter</header>
+                    <header className="footer-title">Health Tips</header>
                     <fieldset className="form-control w-80">
                         <label className="label">
                             <span className="label-text">Enter your email address</span>
