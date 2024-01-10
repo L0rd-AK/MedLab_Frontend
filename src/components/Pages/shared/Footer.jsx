@@ -1,7 +1,7 @@
 const Footer = () => {
     return (
         <>
-            <footer className="footer p-10 bg-base-200 text-base-content">
+            <footer className="footer p-10 bg-base-200 text-base-content mt-10">
                 <div>
                     <img className="h-10" src="https://i.ibb.co/Q9r1j6Q/logo.png" alt="" />
                     <p className="text-left"> <span className="font-bold">MedLab Ltd.</span> <br />Providing reliable Health service since 1992</p>

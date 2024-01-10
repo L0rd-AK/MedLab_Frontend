@@ -4,7 +4,7 @@ import Marquee from "react-fast-marquee";
 const RecomendationSlide = () => {
     const [cards,setCards]=useState([]);
     // fetching health tips
-    fetch("/recomemdation.json")
+    fetch("http://localhost:5000/tips")
     .then(res=>res.json())
     .then(data=>{
         setCards(data);
