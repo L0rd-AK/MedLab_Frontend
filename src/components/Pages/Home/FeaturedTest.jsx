@@ -1,7 +1,7 @@
 import { FaArrowCircleRight } from "react-icons/fa";
 const FeaturedTest = () => {
     return (
-        <div className="mt-10 mb-5 p-5">
+        <div className="mt-10 mb-5 p-5 max-w-7xl mx-auto">
             <h1 className="text-5xl text-black font-bold text-center">Our Featured Tests</h1>
             <p className="text-black font-normal text-center mt-2">MedLab is a leading clinic in health care. Here are some test, most used by our users.</p>
             <div className="p-2">

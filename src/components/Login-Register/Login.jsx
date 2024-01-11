@@ -1,37 +1,52 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import { useContext } from "react";
-import { toast} from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { FcGoogle } from 'react-icons/fc';
+import useAxiosPublc from "../../hooks/useAxiosPublc";
 const Login = () => {
-    const { signIn,auth,setToogle} = useContext(AuthContext);
+    const { signIn, auth, setToogle } = useContext(AuthContext);
     const location = useLocation();
     const navigate = useNavigate();
-    const provider= new GoogleAuthProvider();
-    const HandelSignInWithGoogle=()=>{
-        
-        signInWithPopup(auth,provider)
-        .then((result) => 
-                {toast.success(`successfully loged in`);
-                navigate(location?.state ? location.state : '/');
-                setToogle(false);
-                console.log("user found",result.user)}
-            )
+    const axiosPublic = useAxiosPublc();
+    const provider = new GoogleAuthProvider();
+    const HandelSignInWithGoogle = () => {
+        signInWithPopup(auth, provider)
+            .then((result) => {
+                const userInfo = {
+                    email: result.user?.email,
+                    name: result.user?.displayName,
+                    status:"active" 
+                }
+                axiosPublic.post('/users', userInfo)
+                    .then(res => {
+                        //console.log(res);
+                        if (res.data.insertedId) {
+                            toast.success(`successfully loged in`);
+                            navigate(location?.state ? location.state : '/');
+                            setToogle(false);
+                        }
+                    })
+                    .catch(error => {
+                        toast.error(`${error.code}`);
+                        console.error(error)
+                    })
+            })
             .catch(error => {
                 toast.error(`${error.code}`);
                 console.error(error)
             })
-        
-            
+
+
     }
     const handleLogin = e => {
         e.preventDefault();
         const form = new FormData(e.currentTarget);
         const email = form.get('email');
         const password = form.get('password');
-       
+
         signIn(email, password)
             .then(result => {
                 toast.success(`successfully loged in`);
@@ -55,26 +70,26 @@ const Login = () => {
                             </h1>
                             <namem className="space-y-4 md:space-y-6" action="#">
                                 <form className="space-y-4 md:space-y-6" onSubmit={handleLogin}>
-                                <div>
-                                    <label name="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-left">Your email</label>
-                                    <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required />
-                                </div>
-                                <div>
-                                    <label name="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-left">Password</label>
-                                    <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
-                                </div>
-                                <div className="flex items-center justify-between">
-                                    <div className="flex items-start">
-                                        <div className="flex items-center h-5">
-                                            <input id="remember" aria-describedby="remember" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800" required />
-                                        </div>
-                                        <div className="ml-3 text-sm">
-                                            <label name="remember" className="text-gray-500 dark:text-gray-300">Remember me</label>
-                                        </div>
+                                    <div>
+                                        <label name="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-left">Your email</label>
+                                        <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required />
                                     </div>
-                                    <a href="#" className="mt-5 text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
-                                </div>
-                                  <button type="submit" className="mt-5 w-full text-white bg-[#47ccc8] hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign in</button>
+                                    <div>
+                                        <label name="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-left">Password</label>
+                                        <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+                                    </div>
+                                    <div className="flex items-center justify-between">
+                                        <div className="flex items-start">
+                                            <div className="flex items-center h-5">
+                                                <input id="remember" aria-describedby="remember" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800" required />
+                                            </div>
+                                            <div className="ml-3 text-sm">
+                                                <label name="remember" className="text-gray-500 dark:text-gray-300">Remember me</label>
+                                            </div>
+                                        </div>
+                                        <a href="#" className="mt-5 text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
+                                    </div>
+                                    <button type="submit" className="mt-5 w-full text-white bg-[#47ccc8] hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign in</button>
                                 </form>
                                 <div className="text-center"><button onClick={HandelSignInWithGoogle} className="flex items-center text-center gap-5 w-full text-white border-[#47ccc8] border-2 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 "><FcGoogle className="ml-8 lg:ml-20 text-2xl"></FcGoogle>Sign in with Google</button></div>
                                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">

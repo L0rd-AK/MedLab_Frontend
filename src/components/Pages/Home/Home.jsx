@@ -1,5 +1,4 @@
-import Footer from "../shared/Footer";
-import Navbar from "../shared/Navbar";
+
 import Banner from "./Banner";
 import FeaturedTest from "./FeaturedTest";
 import RecomendationSlide from "./RecomendationSlide";

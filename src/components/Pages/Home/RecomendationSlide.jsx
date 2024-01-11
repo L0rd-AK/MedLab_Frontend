@@ -10,7 +10,7 @@ const RecomendationSlide = () => {
         setCards(data);
     })
     return (
-        <div>
+        <div className="max-w-7xl mx-auto">
             <h1 className="text-5xl text-black font-bold text-center">Health Tips from our Doctors</h1>
             <Marquee>
             {

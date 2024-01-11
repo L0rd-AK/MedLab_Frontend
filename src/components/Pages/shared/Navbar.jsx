@@ -9,18 +9,14 @@ const Navbar = () => {
             {
                 user ?
                     <div className='lg:flex'>
-                        <li className="text-lg px-5 py-1"><NavLink to="/">Home</NavLink></li>
-                        <li className="text-lg px-5 py-1"><NavLink to="/all-jobs">Upcoming Appointments</NavLink></li>
-                        <li className="text-lg px-5 py-1"><NavLink to="/blogs">Test results</NavLink></li>
-                        <li className="text-lg px-5 py-1"><NavLink to="/add-a-job">DashBoard</NavLink></li>
-                        <li className="text-lg px-5 py-1"><NavLink to='/my-jobs'>Admin DashBoard</NavLink></li>
-                        {/* <li className="text-lg px-5 py-1"><NavLink to={`/applied-jobs/${user.email}`}>Applied Jobs</NavLink></li> */}
+                        <li className="text-lg px-3 py-1"><NavLink to="/">Home</NavLink></li>
+                        <li className="text-lg px-3 py-1"><NavLink to="/dashboard">DashBoard</NavLink></li>
+                        {/* <li className="text-lg px-3 py-1"><NavLink to={`/applied-jobs/${user.email}`}>Applied Jobs</NavLink></li> */}
                     </div>
                     :
                     <div className='lg:flex'>
-                        <li className="text-lg px-5 py-2"><NavLink to="/">Home</NavLink></li>
-                        <li className="text-lg px-5 py-2"><NavLink to="/all-jobs">About us</NavLink></li>
-                        <li className="text-lg px-5 py-2"><NavLink to="/blogs">Blogs</NavLink></li>
+                        <li className="text-lg px-3 py-1"><NavLink to="/">Home</NavLink></li>
+                        <li className="text-lg px-3 py-1"><NavLink to="/dashboard">DashBoard</NavLink></li>
                     </div>
             }
         </>

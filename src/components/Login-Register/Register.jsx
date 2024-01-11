@@ -1,22 +1,42 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {
-    CitySelect,
-    CountrySelect,
-    StateSelect,
-} from "react-country-state-city";
-import "react-country-state-city/dist/react-country-state-city.css";
 import Swal from "sweetalert2";
 const Register = () => {
-    const [countryid, setCountryid] = useState(0);
-    const [stateid, setstateid] = useState(0);
-    const [Cityid, setCityid] = useState(0);
+    const data=useLoaderData();
+    const BloodType = useRef();
+    const countryType = useRef();
+    const stateType = useRef();
+    const [countryData, setcountryData] = useState([]);
     const { createUser, upDateProfile, setToogle } = useContext(AuthContext);
     // const location = useLocation();
     const navigate = useNavigate();
+    useEffect(()=>{
+        setcountryData(data);
+    },[data])
+    // =========== country ======================
+    const [countryid, setCountryid] = useState('');
+    const [state, setState] = useState([]);
+    const [stateid, setStateid] = useState('');
+    
+    
+    const handlecounty = (e) => {
+        const getcountryId = e.target.value;
+        const getStatedata = countryData.find(country => country.country_id === getcountryId).states;
+        setState(getStatedata);
+        setCountryid(getcountryId);
+    }
+
+    const handlestate = (e) => {
+        const stateid = e.target.value;
+        setStateid(stateid);
+
+    }
+    // =================================
+
+
     const handleRegister = e => {
         e.preventDefault();
         const form = new FormData(e.currentTarget);
@@ -24,17 +44,22 @@ const Register = () => {
         const password = form.get('password');
         const Name = form.get('name');
         const Photo = form.get('photo');
-        const Blood = form.get('Blood');
-        const country = countryid;
-        const state = stateid;
-        const city = Cityid;
+        const Blood = BloodType.current.value;
+        const Country1 = countryType.current.value;
+        const State1 = stateType.current.value;
 
+        const Country = countryData[parseInt(Country1)-1].country_name;
+        let State='';
+        state.map(i=>{
+            if(i.state_id===State1)State=i.state_name;
+        })
+        
         if (/^(?=.*[A-Z])(?=.*[@#$%^&+=])(?=.*[a-z])(?=.*[0-9]).{6,}$/.test(password)) {
             // upDateProfile(Name,Photo);
             createUser(email, password)
                 .then(result => {
                     upDateProfile(Name, Photo);
-                    const newUser={email,password,Name,Blood,country,state,city}
+                    const newUser = { email, password, Name, Blood, Country, State,status:"active" }
                     fetch(`http://localhost:5000/users`, {
                         method: 'POST',
                         headers: {
@@ -47,7 +72,7 @@ const Register = () => {
                             if (data.insertedId) {
                                 Swal.fire({
                                     icon: 'success',
-                                    title: 'Job Posted successfuly',
+                                    title: 'Successfuly Account created',
                                 })
                             }
                             console.log(data);
@@ -86,11 +111,11 @@ const Register = () => {
                                 </div>
                                 <div>
                                     <label name="photo" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-left">Upload Proffile picture</label>
-                                    <input type="file" className="file-input file-input-bordered file-input-info w-full max-w-xs"  />
+                                    <input type="file" className="file-input file-input-bordered file-input-info w-full max-w-xs" />
                                 </div>
                                 <div className="text-white">
                                     <label name="Blood" className="block mb-2 text-sm font-medium text-white text-left">Blood Group</label>
-                                    <select name="Blood" className="input input-bordered input-accent w-full bg-transparent">
+                                    <select ref={BloodType} name="Blood" className="input input-bordered input-accent w-full bg-transparent">
                                         <option selected="">Select Blood type</option>
                                         <option className="text-black" value="A-">A-</option>
                                         <option className="text-black" value="A+">A+</option>
@@ -103,32 +128,30 @@ const Register = () => {
                                     </select>
                                 </div>
                                 {/* =============== react city-state ================= */}
-                                <div>
-                                    <h6 className="text-white text-left py-2">Country</h6>
-                                    <CountrySelect
-                                        onChange={(e) => {
-                                            setCountryid(e.id);
-                                        }}
-                                        placeHolder="Select Country"
-                                    />
-                                    <h6 className="text-white text-left py-2">State</h6>
-                                    <StateSelect
-                                        countryid={countryid}
-                                        onChange={(e) => {
-                                            setstateid(e.id);
-                                        }}
-                                        placeHolder="Select State"
-                                    />
-                                    <h6 className="text-white text-left py-2">City</h6>
-                                    <CitySelect
-                                        countryid={countryid}
-                                        stateid={stateid}
-                                        Cityid={Cityid}
-                                        onChange={(e) => {
-                                            setCityid(e.id);
-                                        }}
-                                        placeHolder="Select City"
-                                    />
+                                <div className="text-white">
+                                    <label name="country" className="block mb-2 text-sm font-medium text-white text-left">Country</label>
+                                    <select ref={countryType} name='country' className='form-control' onChange={(e) => handlecounty(e)}>
+                                        <option className="text-black" value="">Select Country</option>
+                                        {
+                                            countryData.map((getcountry, index) => (
+                                                <option className="text-black" value={getcountry.country_id} key={index}>{getcountry.country_name}</option>
+                                            ))
+
+                                        }
+                                    </select>
+                                </div>
+                                <div className="text-white">
+                                    <label name="states" className="block mb-2 text-sm font-medium text-white text-left">State</label>
+                                    <select ref={stateType} name='states' className='form-control' onChange={(e) => handlestate(e)}>
+                                        <option className="text-black" value="">Select State</option>
+                                        {
+                                            state.map((getstate, index) => (
+                                                <option className="text-black" value={getstate.state_id} key={index}>{getstate.state_name}</option>
+                                            ))
+                                        }
+
+
+                                    </select>
                                 </div>
                                 {/* ================================ */}
                                 <div className="flex gap-5">
