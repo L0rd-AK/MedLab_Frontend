@@ -149,8 +149,6 @@ const Register = () => {
                                                 <option className="text-black" value={getstate.state_id} key={index}>{getstate.state_name}</option>
                                             ))
                                         }
-
-
                                     </select>
                                 </div>
                                 {/* ================================ */}

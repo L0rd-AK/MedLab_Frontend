@@ -76,7 +76,7 @@ const AuthProvider = ({ children }) => {
             unSubscribe();
         }
     }, [])
-    // console.log(user);
+    console.log(user);
     // console.log(toogle);
     const authInfo = {
         auth,

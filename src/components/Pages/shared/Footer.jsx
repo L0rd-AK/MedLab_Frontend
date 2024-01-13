@@ -7,11 +7,14 @@ const Footer = () => {
                     <p className="text-left"> <span className="font-bold">MedLab Ltd.</span> <br />Providing reliable Health service since 1992</p>
                 </div>
                 <nav>
-                    <header className="footer-title">Services</header>
-                    <a className="link link-hover">Branding</a>
-                    <a className="link link-hover">Design</a>
-                    <a className="link link-hover">Marketing</a>
-                    <a className="link link-hover">Advertisement</a>
+                    <header className="footer-title">Emergency Call</header>
+                    <a className="link link-hover">+07 5554 3332 322</a>
+                    <a className="link link-hover">+07 5554 3332 456</a>
+                </nav>
+                <nav>
+                    <header className="footer-title">Ambulance - 24/7</header>
+                    <a className="link link-hover">+07 5554 3332 245</a>
+                    <a className="link link-hover">+07 5554 3332 792</a>
                 </nav>
                 <nav>
                     <header className="footer-title">Company</header>

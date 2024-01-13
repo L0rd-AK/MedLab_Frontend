@@ -9,6 +9,9 @@ import DashBoard from "../Dashboard/DashBoard";
 import UpcomingAppointments from "../Dashboard/UpcomingAppointments";
 import TestResults from "../Dashboard/TestResults";
 import Profile from "../Dashboard/Profile";
+import PrivateRoute from "../Private-route/PrivateRoute";
+import AllTest from "../Pages/AllTest";
+import TestDetails from "../Pages/TestDetails";
 
   export const router = createBrowserRouter([
     {
@@ -28,16 +31,26 @@ import Profile from "../Dashboard/Profile";
           element: <Register></Register>,
           loader: ()=>fetch('/countryData.json')
         },
+        {
+          path: '/all-tests',
+          element: <AllTest></AllTest>,
+          loader: ()=>fetch('/countryData.json')
+        },
+        {
+          path: '/all-tests/:id',
+          element: <PrivateRoute><TestDetails></TestDetails></PrivateRoute>,
+          loader: ({ params }) => fetch(`http://localhost:5000/all-tests/${params.id}`)
+        },
       ]
     },
     {
       path:'/dashboard',
-      element: <DashBoard></DashBoard>,
+      element: <PrivateRoute> <DashBoard></DashBoard> </PrivateRoute>,
       children:[
         {
-          path: '/dashboard/profile',
-          element: <Profile></Profile>,
-          loader: ()=>fetch('http://localhost:5000/users')
+          path: '/dashboard/profile/:id',
+          element: <PrivateRoute><Profile></Profile></PrivateRoute>,
+          loader: ({ params }) => fetch(`http://localhost:5000/users/${params.id}`)
         },
         {
           path: '/dashboard/appointments',

@@ -1,0 +1,67 @@
+[
+    {
+        "testName": "Comprehensive Blood Chemistry",
+        "imageUrl": "https://i.ibb.co/MG4nzh8/Comprehensive-Blood-Chemistry.jpg",
+        "details": "Evaluates a wide range of health markers, including glucose, cholesterol, electrolytes, kidney and liver function.",
+        "price": "1500 BDT",
+        "date": "2024-01-20",
+        "slots": 24
+    },
+    {
+        "testName": "Complete Blood Count (CBC)",
+        "imageUrl": "https://i.ibb.co/vsw5K3y/Complete-Blood-Count.jpg",
+        "details": "Measures red blood cells, white blood cells, platelets, hemoglobin, and hematocrit to assess overall blood health.",
+        "price": "800 BDT",
+        "date": "2024-01-21",
+        "slots": 20
+    },
+    {
+        "testName": "Thyroid Panel",
+        "imageUrl": "https://i.ibb.co/nw9TRgH/Thyroid-Panel.jpg",
+        "details": "Checks levels of thyroid hormones (TSH, T3, T4) to evaluate thyroid function, which affects metabolism and energy levels.",
+        "price": "1200 BDT",
+        "date": "2024-01-19",
+        "slots": 9
+    },
+    {
+        "testName": "Lipid Profile",
+        "imageUrl": "https://i.ibb.co/qRsrbqJ/Lipid-Profile.jpg",
+        "details": "Measures cholesterol levels (total, HDL, LDL, triglycerides) to assess heart disease risk.",
+        "price": "950 BDT",
+        "date": "2024-01-18",
+        "slots": 8
+    },
+    {
+        "testName": "Diabetes Screening",
+        "imageUrl": "https://i.ibb.co/PM8zYn4/Diabetes-Screening.jpg",
+        "details": "Tests blood sugar levels (fasting and A1C) to diagnose or monitor diabetes, a condition affecting blood sugar regulation.",
+        "price": "1000 BDT",
+        "date": "2024-01-22",
+        "slots": 18
+    },
+    {
+        "testName": "Urine Analysis",
+        "imageUrl": "https://i.ibb.co/p44B2Nn/Urine-Analysis.jpg",
+        "details": "Analyzes urine for abnormalities in composition, indicating possible kidney or urinary tract infections.",
+        "price": "750 BDT",
+        "date": "2024-01-17",
+        "slots": 4
+    },
+    {
+        "testName": "Electrocardiogram (ECG)",
+        "imageUrl": "https://i.ibb.co/kD7b1jp/Electrocardiogram-ECG.jpg",
+        "details": "Records electrical activity of the heart to assess rhythm and detect abnormalities like arrhythmias.",
+        "price": "1400 BDT",
+        "date": "2024-01-23",
+        "slots": 12
+    },
+    {
+        "testName": "Bone Density Scan (DXA)",
+        "imageUrl": "https://i.ibb.co/4SSW68P/Bone-Density-Scan-DXA.jpg",
+        "details": "Measures bone mineral density (BMD) in hips and spine, helping to assess osteoporosis risk and monitor treatment effectiveness. Early detection is crucial for preventing fractures.",
+        "price": "2500 BDT",
+        "date": "2024-01-24",
+        "slots": 10
+      }
+      
+]

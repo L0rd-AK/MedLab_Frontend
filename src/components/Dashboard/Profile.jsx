@@ -1,32 +1,61 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Swal from "sweetalert2";
 import { useLoaderData } from "react-router-dom";
 const Profile = () => {
-    const jobType = useRef();
+    const [countryData, setcountryData] = useState([]);
+    const BloodType = useRef();
+    const countryType = useRef();
+    const stateType = useRef();
     const userCollection = useLoaderData();
+    console.log(userCollection);
     // ======================================================================
-    useEffect(() => {
-        
-    }, []);
+    useEffect(()=>{
+        fetch('/countryData.json')
+        .then(res=>res.json())
+        .then(data=>setcountryData(data))
+    },[])
     // ======================================================================
+   
+    // =========== country ======================
+    const [countryid, setCountryid] = useState('');
+    const [state, setState] = useState([]);
+    const [stateid, setStateid] = useState('');
+    
+    
+    const handlecounty = (e) => {
+        const getcountryId = e.target.value;
+        const getStatedata = countryData.find(country => country.country_id === getcountryId).states;
+        setState(getStatedata);
+        setCountryid(getcountryId);
+    }
 
+    const handlestate = (e) => {
+        const stateid = e.target.value;
+        setStateid(stateid);
+
+    }
     const UpdateJob = (e) => {
         e.preventDefault();
-        const selected_jobType = jobType.current.value;
+        const selected_BloodType = BloodType.current.value;
         const form = new FormData(e.currentTarget);
-        const Job_Title = form.get('title');
-        const Company_Logo = form.get('photo');
-        const Name = form.get('name');
-        const Salary_Range = form.get('Salary');
-        const Job_Applicants_Number = form.get('Job_Applicants_Number');
-        const Job_Description = form.get('description');
-        const updatedJob = { Job_Title, Job_Type: selected_jobType, Company_Logo, Name, Salary_Range, Job_Applicants_Number, Job_Posting_Date: startDate, Application_Deadline: endDate, Job_Description };
-        fetch(`https://jobdoc.vercel.app/all-jobs/${userCollection._id}`, {
+        const name = form.get('name');
+        const User_Description = form.get('description');
+        const Country1 = countryType.current.value;
+        const State1 = stateType.current.value;
+
+        const Country = countryData[parseInt(Country1)-1].country_name;
+        let State='';
+        state.map(i=>{
+            if(i.state_id===State1)State=i.state_name;
+        })
+        const updatedProfile = { name,selected_BloodType,Country,State,User_Description: User_Description };
+
+        fetch(`http://localhost:5000/users/${userCollection._id}`,{
             method: 'PUT',
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(updatedJob),
+            body: JSON.stringify(updatedProfile),
         })
             .then(res => res.json())
             .then(data => {
@@ -48,33 +77,53 @@ const Profile = () => {
                     <form onSubmit={UpdateJob}>
                         <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
                             <div className="w-full">
-                                <label name="title" className="block mb-2 text-sm font-medium text-black">Job Title</label>
-                                <input defaultValue={userCollection.Job_Title} type="text" name="title" id="title" className="input input-bordered input-accent w-full bg-transparent" placeholder="Type product name" required="" />
+                                <label name="name" className="block mb-2 text-sm font-medium text-black">Name</label>
+                                <input defaultValue={userCollection.name} type="text" name="name" id="name" className="input input-bordered input-accent w-full bg-transparent" placeholder="Type your name" required="" />
                             </div>
-                            <div>
-                                <label name="type" className="block mb-2 text-sm font-medium text-black">Job Category</label>
-                                <select ref={jobType} name="type" className="input input-bordered input-accent w-full bg-transparent">
-                                    <option selected="">{userCollection.Job_Type}</option>
-                                    <option value="On Site Job">On Site Job</option>
-                                    <option value="Remote Job">Remote Job</option>
-                                    <option value="Part Time Job">Part Time Job</option>
-                                </select>
-                            </div>
-                            <div className="w-full">
-                                <label name="photo" className="block mb-2 text-sm font-medium text-black">Company Logo or Job banner URL</label>
-                                <input defaultValue={userCollection.Company_Logo} type="text" name="photo" id="photo" className="input input-bordered input-accent w-full bg-transparent" placeholder="URL" required="" />
-                            </div>
-                            <div className="w-full">
-                                <label name="name" className="block mb-2 text-sm font-medium text-black">User Name</label>
-                                <input defaultValue={userCollection.Name} type="text" name="name" id="name" className="input input-bordered input-accent w-full bg-transparent" placeholder="User name" required="" />
+                            <div className="text-black">
+                                    <label name="Blood" className="block mb-2 text-sm font-medium text-black text-left">Blood Group</label>
+                                    <select ref={BloodType} name="Blood" className="input input-bordered input-accent w-full bg-transparent">
+                                        <option selected="">Select Blood type</option>
+                                        <option className="text-black" value="A-">A-</option>
+                                        <option className="text-black" value="A+">A+</option>
+                                        <option className="text-black" value="B-">B-</option>
+                                        <option className="text-black" value="B+">B+</option>
+                                        <option className="text-black" value="AB+">AB+</option>
+                                        <option className="text-black" value="AB-">AB-</option>
+                                        <option className="text-black" value="O+">O+</option>
+                                        <option className="text-black" value="O-">O-</option>
+                                    </select>
                             </div>
                             <div className="w-full">
-                                <label name="Salary" className="block mb-2 text-sm font-medium text-black">Salary</label>
-                                <input defaultValue={userCollection.Salary_Range} type="number" name="Salary" id="Salary" className="input input-bordered input-accent w-full bg-transparent" placeholder="$2999" required="" />
+                                <label name="email" className="block mb-2 text-sm font-medium text-black">User email</label>
+                                <input defaultValue={userCollection.Name} type="text" name="email" id="email" className="input input-bordered input-accent w-full bg-transparent" placeholder="User email" required="" />
                             </div>
                             <div className="w-full">
-                                <label name="Job_Applicants_Number" className="block mb-2 text-sm font-medium text-black">Applicant number</label>
-                                <input defaultValue={userCollection.Job_Applicants_Number} type="number" name="Job_Applicants_Number" id="Job_Applicants_Number" className="input input-bordered input-accent w-full bg-transparent" placeholder="0" required="" />
+                                <label name="password" className="block mb-2 text-sm font-medium text-black">Update Password</label>
+                                <input defaultValue={userCollection.password} type="password" name="password" id="password" className="input input-bordered input-accent w-full bg-transparent" placeholder="••••••••" required="" />
+                            </div>
+                            <div className="text-Black">
+                                    <label name="country" className="block mb-2 text-sm font-medium text-white text-left">Country</label>
+                                    <select ref={countryType} name='country' className="input input-bordered input-accent w-full bg-transparent" onChange={(e) => handlecounty(e)}>
+                                        <option className="text-black" value="">Select Country</option>
+                                        {
+                                            countryData.map((getcountry, index) => (
+                                                <option className="text-black" value={getcountry.country_id} key={index}>{getcountry.country_name}</option>
+                                            ))
+
+                                        }
+                                    </select>
+                                </div>
+                            <div className="text-black">
+                                    <label name="states" className="block mb-2 text-sm font-medium text-white text-left">State</label>
+                                    <select ref={stateType} name='states' className="input input-bordered input-accent w-full bg-transparent" onChange={(e) => handlestate(e)}>
+                                        <option className="text-black" value="">Select State</option>
+                                        {
+                                            state.map((getstate, index) => (
+                                                <option className="text-black" value={getstate.state_id} key={index}>{getstate.state_name}</option>
+                                            ))
+                                        }
+                                    </select>
                             </div>
                             
                             <div className="sm:col-span-2">
@@ -83,7 +132,7 @@ const Profile = () => {
                             </div>
                         </div>
                         <button type="submit" className="BgPrimary inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
-                            Update
+                            Update Profile
                         </button>
                     </form>
                 </namem>
