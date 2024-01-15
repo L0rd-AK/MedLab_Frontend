@@ -16,14 +16,14 @@ const DashBoard = () => {
                     <Link className={`${tag==='profile'?'px-8 py-3 bg-white rounded-lg p-5 text-center font-bold text-lg mb-5 mt-5 cursor-pointer unique':'px-8 py-3 bg-white rounded-lg p-5 text-center font-bold text-lg mb-5 mt-5 cursor-pointer'}`} to={`/dashboard/profile/${user.email}`}>Profile</Link>
                 </div>
                 <div className="mb-10" onClick={()=>setTag('appointments')}>
-                    <Link className={`${tag==='appointments'?'px-8 py-3 bg-white rounded-lg p-5 text-center font-bold text-lg mb-5 cursor-pointer unique':'px-8 py-3 bg-white rounded-lg p-5 text-center font-bold text-lg mb-5 cursor-pointer'}`} to='/dashboard/appointments'>Upcoming Appointments</Link>
+                    <Link className={`${tag==='appointments'?'px-8 py-3 bg-white rounded-lg p-5 text-center font-bold text-lg mb-5 cursor-pointer unique':'px-8 py-3 bg-white rounded-lg p-5 text-center font-bold text-lg mb-5 cursor-pointer'}`} to={`/dashboard/appointments/${user.email}`}>Appointments</Link>
                 </div>
                 <div className="mb-10" onClick={()=>setTag('results')}>
                     <Link className={`${tag==='results'?'px-8 py-3 bg-white rounded-lg p-5 text-center font-bold text-lg mb-5 cursor-pointer unique':'px-8 py-3 bg-white rounded-lg p-5 text-center font-bold text-lg mb-5 cursor-pointer'}`} to='/dashboard/test-results'>Test Results</Link>
                 </div>
             </div>
             <div className="grid col-span-3">
-                <h1 className="text-black font-bold text-5xl text-center mt-5">User DashBoard</h1>
+                {/* <h1 className="text-black font-bold text-5xl text-center mt-5 mb-0">User DashBoard</h1> */}
                 <Outlet></Outlet>
             </div>            
         </div>

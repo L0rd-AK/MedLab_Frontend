@@ -9,9 +9,17 @@ import { AuthContext } from '../Provider/AuthProvider';
 const TestDetails = () => {
     const { user } = useContext(AuthContext);
     const test = useLoaderData();
-    const {testName, imageUrl, details, price, date, slots } = test;
-    const newTest={testName, imageUrl,email:user.email, details, price, date, slots };
-    
+    const { testName, imageUrl, details, price, date, slots } = test;
+    const bookedDate = new Date();
+
+    let day = bookedDate.getDate();
+    let month = bookedDate.getMonth() + 1;
+    let year = bookedDate.getFullYear();
+
+    // This arrangement can be altered based on how we want the date's format to appear.
+    let currentDate = `${day}-${month}-${year}`;
+    const newTest = { testName, imageUrl, email: user.email, details, price, date, slots: slots-1,currentDate };
+
     const handelBookedTests = () => {
         fetch(`http://localhost:5000/appointments`, {
             method: 'POST',

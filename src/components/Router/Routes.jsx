@@ -53,8 +53,9 @@ import TestDetails from "../Pages/TestDetails";
           loader: ({ params }) => fetch(`http://localhost:5000/users/${params.id}`)
         },
         {
-          path: '/dashboard/appointments',
-          element: <UpcomingAppointments></UpcomingAppointments>
+          path: '/dashboard/appointments/:id',
+          element: <UpcomingAppointments></UpcomingAppointments>,
+          loader: ({params})=>fetch(`http://localhost:5000/appointments/${params.id}`)
         },
         {
           path: '/dashboard/test-results',
