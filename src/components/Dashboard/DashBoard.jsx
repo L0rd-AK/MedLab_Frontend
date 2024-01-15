@@ -19,7 +19,7 @@ const DashBoard = () => {
                     <Link className={`${tag==='appointments'?'px-8 py-3 bg-white rounded-lg p-5 text-center font-bold text-lg mb-5 cursor-pointer unique':'px-8 py-3 bg-white rounded-lg p-5 text-center font-bold text-lg mb-5 cursor-pointer'}`} to={`/dashboard/appointments/${user.email}`}>Appointments</Link>
                 </div>
                 <div className="mb-10" onClick={()=>setTag('results')}>
-                    <Link className={`${tag==='results'?'px-8 py-3 bg-white rounded-lg p-5 text-center font-bold text-lg mb-5 cursor-pointer unique':'px-8 py-3 bg-white rounded-lg p-5 text-center font-bold text-lg mb-5 cursor-pointer'}`} to='/dashboard/test-results'>Test Results</Link>
+                    <Link className={`${tag==='results'?'px-8 py-3 bg-white rounded-lg p-5 text-center font-bold text-lg mb-5 cursor-pointer unique':'px-8 py-3 bg-white rounded-lg p-5 text-center font-bold text-lg mb-5 cursor-pointer'}`} to={`/dashboard/test-results/${user.email}`}>Test Results</Link>
                 </div>
             </div>
             <div className="grid col-span-3">
