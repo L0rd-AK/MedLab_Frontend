@@ -62,7 +62,7 @@ const Profile = () => {
                 if (data.modifiedCount > 0) {
                     Swal.fire({
                         icon: 'success',
-                        title: 'Job has been Updated',
+                        title: 'Profile has been Updated',
                     })
                 }
                 console.log(data);

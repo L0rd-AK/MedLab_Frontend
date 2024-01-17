@@ -12,6 +12,8 @@ import Profile from "../Dashboard/Profile";
 import PrivateRoute from "../Private-route/PrivateRoute";
 import AllTest from "../Pages/AllTest";
 import TestDetails from "../Pages/TestDetails";
+import AllUser from "../Dashboard/Admin/AllUser";
+import Modal from "../Dashboard/Admin/Modal";
 
   export const router = createBrowserRouter([
     {
@@ -34,7 +36,6 @@ import TestDetails from "../Pages/TestDetails";
         {
           path: '/all-tests',
           element: <AllTest></AllTest>,
-          loader: ()=>fetch('/countryData.json')
         },
         {
           path: '/all-tests/:id',
@@ -45,7 +46,8 @@ import TestDetails from "../Pages/TestDetails";
     },
     {
       path:'/dashboard',
-      element: <PrivateRoute> <DashBoard></DashBoard> </PrivateRoute>,
+      element: <PrivateRoute> <DashBoard></DashBoard></PrivateRoute>,
+      loader: () => fetch(`http://localhost:5000/users`),
       children:[
         {
           path: '/dashboard/profile/:id',
@@ -61,6 +63,16 @@ import TestDetails from "../Pages/TestDetails";
           path: '/dashboard/test-results/:id',
           element: <TestResults></TestResults>,
           loader: ({params})=>fetch(`http://localhost:5000/appointments/${params.id}`)
+        },
+        {
+          path: '/dashboard/all-users',
+          element: <AllUser></AllUser>,
+          loader: () => fetch(`http://localhost:5000/users`),
+        },
+        {
+          path: '/dashboard/all-users/modal/:id',
+          element: <Modal></Modal>,
+          loader: ({ params }) => fetch(`http://localhost:5000/users/${params.id}`),
         }
 
       ]

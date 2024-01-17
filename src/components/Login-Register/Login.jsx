@@ -18,14 +18,16 @@ const Login = () => {
                 const userInfo = {
                     email: result.user?.email,
                     name: result.user?.displayName,
-                    status:"active" 
+                    status:"active",
+                    isAdmin: false
                 }
                 axiosPublic.post('/users', userInfo)
                     .then(res => {
-                        //console.log(res);
+                        console.log(res);
+                        toast.success(`successfully loged in`);
+                        navigate(location?.state ? location.state : '/');
                         if (res.data.insertedId) {
-                            toast.success(`successfully loged in`);
-                            navigate(location?.state ? location.state : '/');
+                            
                             setToogle(false);
                         }
                     })

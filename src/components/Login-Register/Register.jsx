@@ -59,7 +59,7 @@ const Register = () => {
             createUser(email, password)
                 .then(result => {
                     upDateProfile(Name, Photo);
-                    const newUser = { email, password, Name, Blood, Country, State,status:"active" }
+                    const newUser = { email, password, Name, Blood, Country, State,status:"active",isAdmin: false }
                     fetch(`http://localhost:5000/users`, {
                         method: 'POST',
                         headers: {
