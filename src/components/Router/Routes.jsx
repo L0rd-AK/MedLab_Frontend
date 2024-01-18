@@ -14,6 +14,9 @@ import AllTest from "../Pages/AllTest";
 import TestDetails from "../Pages/TestDetails";
 import AllUser from "../Dashboard/Admin/AllUser";
 import Modal from "../Dashboard/Admin/Modal";
+import Add_a_test from "../Dashboard/Admin/Add_a_test";
+import AllTeastas from "../Dashboard/Admin/AllTeastas";
+import UpdateTest from "../Dashboard/Admin/UpdateTest";
 
   export const router = createBrowserRouter([
     {
@@ -56,7 +59,7 @@ import Modal from "../Dashboard/Admin/Modal";
         },
         {
           path: '/dashboard/appointments/:id',
-          element: <UpcomingAppointments></UpcomingAppointments>,
+          element: <PrivateRoute><UpcomingAppointments></UpcomingAppointments></PrivateRoute>,
           loader: ({params})=>fetch(`http://localhost:5000/appointments/${params.id}`)
         },
         {
@@ -73,6 +76,21 @@ import Modal from "../Dashboard/Admin/Modal";
           path: '/dashboard/all-users/modal/:id',
           element: <Modal></Modal>,
           loader: ({ params }) => fetch(`http://localhost:5000/users/${params.id}`),
+        },
+        {
+          path: '/dashboard/add-a-test',
+          element: <Add_a_test></Add_a_test>,
+          loader: ({ params }) => fetch(`http://localhost:5000/users/${params.id}`),
+        },
+        {
+          path: '/dashboard/AllTeastas',
+          element: <AllTeastas></AllTeastas>,
+          loader: () => fetch(`http://localhost:5000/all-tests`),
+        },
+        {
+          path: '/dashboard/update-test/:id',
+          element: <UpdateTest></UpdateTest>,
+          loader: ({ params }) => fetch(`http://localhost:5000/all-tests/${params.id}`)
         }
 
       ]

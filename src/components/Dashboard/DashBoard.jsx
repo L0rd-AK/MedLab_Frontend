@@ -33,6 +33,9 @@ const DashBoard = () => {
                                             <div className="mb-10" onClick={() => setTag('add-a-test')}>
                                                 <Link className={`${tag === 'add-a-test' ? 'px-8 py-3 bg-white rounded-lg p-5 text-center font-bold text-lg mb-5 mt-5 cursor-pointer unique' : 'px-8 py-3 bg-white rounded-lg p-5 text-center font-bold text-lg mb-5 mt-5 cursor-pointer'}`} to='/dashboard/add-a-test'>Add a Test</Link>
                                             </div>
+                                            <div className="mb-10" onClick={() => setTag('allTestas')}>
+                                                <Link className={`${tag === 'allTestas' ? 'px-8 py-3 bg-white rounded-lg p-5 text-center font-bold text-lg mb-5 mt-5 cursor-pointer unique' : 'px-8 py-3 bg-white rounded-lg p-5 text-center font-bold text-lg mb-5 mt-5 cursor-pointer'}`} to='/dashboard/AllTeastas'>All Tests</Link>
+                                            </div>
                                             <div className="divider bg-white h-1"></div>
                                             {/* ================ user options ================ */}
                                             <div className="mb-10 mt-10" onClick={() => setTag('home')}>

@@ -20,7 +20,7 @@ const UpcomingAppointments = () => {
                     </tr>
                 </thead>
                 {
-                    appointments.map(i=> <AppointmentCard key={i._id} test={i}></AppointmentCard>)
+                    appointments?.map(i=> <AppointmentCard key={i._id} test={i}></AppointmentCard>)
                 }
             </table>
         </div>
