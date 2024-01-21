@@ -4,14 +4,18 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Swal from "sweetalert2";
+import axios from "axios";
 const Register = () => {
+    const image_hosting_key=import.meta.env.VITE_IMAGE_HOSTING;
+
+    
     const data=useLoaderData();
     const BloodType = useRef();
     const countryType = useRef();
     const stateType = useRef();
     const [countryData, setcountryData] = useState([]);
+    const [img, setIMG] = useState('');
     const { createUser, upDateProfile, setToogle } = useContext(AuthContext);
-    // const location = useLocation();
     const navigate = useNavigate();
     useEffect(()=>{
         setcountryData(data);
@@ -36,7 +40,17 @@ const Register = () => {
     }
     // =================================
 
-
+    // const uploadImage = (img)=> {
+    //     let body = new FormData()
+    //     body.set('key', image_hosting_key)
+    //     body.append('image', img)
+    
+    //     return axios({
+    //       method: 'post',
+    //       url: 'https://api.imgbb.com/1/upload',
+    //       data: body
+    //     })
+    //   }
     const handleRegister = e => {
         e.preventDefault();
         const form = new FormData(e.currentTarget);
@@ -47,7 +61,22 @@ const Register = () => {
         const Blood = BloodType.current.value;
         const Country1 = countryType.current.value;
         const State1 = stateType.current.value;
-
+        
+        // ================ image bb ==================
+        let body = new FormData()
+        body.set('key', image_hosting_key)
+        body.append('image', Photo)
+    
+        axios({
+          method: 'post',
+          url: 'https://api.imgbb.com/1/upload',
+          data: body
+        })
+        .then(res=>{
+            setIMG(res.data.data.display_url);
+            console.log(res.data.data.display_url);
+        })
+        // ==========================
         const Country = countryData[parseInt(Country1)-1].country_name;
         let State='';
         state.map(i=>{
@@ -58,8 +87,8 @@ const Register = () => {
             // upDateProfile(Name,Photo);
             createUser(email, password)
                 .then(result => {
-                    upDateProfile(Name, Photo);
-                    const newUser = { email, password, Name, Blood, Country, State,status:"active",isAdmin: false }
+                    upDateProfile(Name, img);
+                    const newUser = { email, password, Name, Blood,image:img, Country, State,status:"active",isAdmin: false }
                     fetch(`http://localhost:5000/users`, {
                         method: 'POST',
                         headers: {
@@ -91,6 +120,7 @@ const Register = () => {
         }
 
     }
+    // onChange={(e)=>uploadImage(e.target.files[0])}
     return (
         <section className="bg-white">
             <div className="flex items-center justify-center px-6 py-8">
@@ -111,7 +141,7 @@ const Register = () => {
                                 </div>
                                 <div>
                                     <label name="photo" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-left">Upload Proffile picture</label>
-                                    <input type="file" className="file-input file-input-bordered file-input-info w-full max-w-xs" />
+                                    <input  name="photo" type="file" className="file-input file-input-bordered file-input-info w-full max-w-xs" />
                                 </div>
                                 <div className="text-white">
                                     <label name="Blood" className="block mb-2 text-sm font-medium text-white text-left">Blood Group</label>
@@ -130,7 +160,7 @@ const Register = () => {
                                 {/* =============== react city-state ================= */}
                                 <div className="text-white">
                                     <label name="country" className="block mb-2 text-sm font-medium text-white text-left">Country</label>
-                                    <select ref={countryType} name='country' className='form-control' onChange={(e) => handlecounty(e)}>
+                                    <select ref={countryType} name='country' className="input input-bordered input-accent w-full bg-transparent" onChange={(e) => handlecounty(e)}>
                                         <option className="text-black" value="">Select Country</option>
                                         {
                                             countryData.map((getcountry, index) => (
@@ -142,7 +172,7 @@ const Register = () => {
                                 </div>
                                 <div className="text-white">
                                     <label name="states" className="block mb-2 text-sm font-medium text-white text-left">State</label>
-                                    <select ref={stateType} name='states' className='form-control' onChange={(e) => handlestate(e)}>
+                                    <select ref={stateType} name='states' className="input input-bordered input-accent w-full bg-transparent" onChange={(e) => handlestate(e)}>
                                         <option className="text-black" value="">Select State</option>
                                         {
                                             state.map((getstate, index) => (

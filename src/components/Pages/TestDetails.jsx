@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 // import { FaBusinessTime, FaLocationDot, FaSackDollar } from 'react-icons/fa6';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 // import { useLoaderData } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../Provider/AuthProvider';
@@ -47,7 +47,7 @@ const TestDetails = () => {
                     <div className=' w-2/4 p-5 '>
                         <div className='text-black space-y-5 mt-7'>
                             <h1 className='text-3xl'><span className='font-bold'>Test:</span> {testName}</h1>
-                            <h3 className='font-bold text-2xl'>Price: <span className='text-[#1CA774]'>${price}</span></h3>
+                            <h3 className='font-bold text-2xl'>Price: <span className='text-[#1CA774]'>${price} BDT</span></h3>
                             <h3 className='font-bold '>Available Slots: <span className='text-red-600'>{slots}</span></h3>
                             <h3 className='font-bold '>Date: <span className='text-red-600'>{date}</span></h3>
                         </div>
@@ -92,7 +92,7 @@ const TestDetails = () => {
                             <label htmlFor="default-checkbox" className="ml-2 text-sm font-medium text-black ">Get Report Alart</label>
                         </div>
 
-                        <button onClick={handelBookedTests} className='btn BgPrimary text-white font-semibold w-full'>Book Test</button>
+                        <Link to={`/paymenst/${price}`}><button  className='btn BgPrimary text-white font-semibold w-full'>Book Test</button></Link>
                     </div>
                 </div>
             </div>

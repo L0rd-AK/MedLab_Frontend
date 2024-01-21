@@ -15,7 +15,6 @@ const TestResults = () => {
                         <th>Booked on</th>
                         <th>Date</th>
                         <th>Slot</th>
-                        <th>Status</th>
                         <th>Report</th>
                     </tr>
                 </thead>

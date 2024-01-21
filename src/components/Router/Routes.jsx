@@ -17,6 +17,9 @@ import Modal from "../Dashboard/Admin/Modal";
 import Add_a_test from "../Dashboard/Admin/Add_a_test";
 import AllTeastas from "../Dashboard/Admin/AllTeastas";
 import UpdateTest from "../Dashboard/Admin/UpdateTest";
+import Reservation from "../Dashboard/Admin/Reservation";
+import ReservationCARD from "../Dashboard/Admin/ReservationCARD";
+import Payment from "../Payment/Payment";
 
   export const router = createBrowserRouter([
     {
@@ -38,12 +41,16 @@ import UpdateTest from "../Dashboard/Admin/UpdateTest";
         },
         {
           path: '/all-tests',
-          element: <AllTest></AllTest>,
+          element: <PrivateRoute><AllTest></AllTest></PrivateRoute>,
         },
         {
           path: '/all-tests/:id',
           element: <PrivateRoute><TestDetails></TestDetails></PrivateRoute>,
           loader: ({ params }) => fetch(`http://localhost:5000/all-tests/${params.id}`)
+        },
+        {
+          path: '/paymenst/:id',
+          element: <PrivateRoute> <Payment></Payment> </PrivateRoute>,
         },
       ]
     },
@@ -64,12 +71,12 @@ import UpdateTest from "../Dashboard/Admin/UpdateTest";
         },
         {
           path: '/dashboard/test-results/:id',
-          element: <TestResults></TestResults>,
+          element: <PrivateRoute><TestResults></TestResults></PrivateRoute>,
           loader: ({params})=>fetch(`http://localhost:5000/appointments/${params.id}`)
         },
         {
           path: '/dashboard/all-users',
-          element: <AllUser></AllUser>,
+          element: <PrivateRoute><AllUser></AllUser></PrivateRoute>,
           loader: () => fetch(`http://localhost:5000/users`),
         },
         {
@@ -79,18 +86,26 @@ import UpdateTest from "../Dashboard/Admin/UpdateTest";
         },
         {
           path: '/dashboard/add-a-test',
-          element: <Add_a_test></Add_a_test>,
+          element: <PrivateRoute><Add_a_test></Add_a_test></PrivateRoute>,
           loader: ({ params }) => fetch(`http://localhost:5000/users/${params.id}`),
         },
         {
           path: '/dashboard/AllTeastas',
-          element: <AllTeastas></AllTeastas>,
+          element: <PrivateRoute><AllTeastas></AllTeastas></PrivateRoute>,
           loader: () => fetch(`http://localhost:5000/all-tests`),
         },
         {
           path: '/dashboard/update-test/:id',
-          element: <UpdateTest></UpdateTest>,
+          element: <PrivateRoute><UpdateTest></UpdateTest></PrivateRoute>,
           loader: ({ params }) => fetch(`http://localhost:5000/all-tests/${params.id}`)
+        },
+        {
+          path: '/dashboard/Reservation',
+          element: <PrivateRoute><Reservation></Reservation></PrivateRoute>
+        },
+        {
+          path: '/dashboard/Reservation/:id',
+          element: <PrivateRoute><ReservationCARD></ReservationCARD></PrivateRoute>
         }
 
       ]

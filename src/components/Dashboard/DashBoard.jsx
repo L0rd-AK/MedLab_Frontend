@@ -27,6 +27,7 @@ const DashBoard = () => {
                                     machedUser.isAdmin ?
                                         <>
                                             {/* ================ Admin options ================ */}
+                                            <h1 className="text-3xl text-center font-bold mb-10">Admin</h1>
                                             <div className="mb-10" onClick={() => setTag('all-users')}>
                                                 <Link className={`${tag === 'all-users' ? 'px-8 py-3 bg-white rounded-lg p-5 text-center font-bold text-lg mb-5 mt-5 cursor-pointer unique' : 'px-8 py-3 bg-white rounded-lg p-5 text-center font-bold text-lg mb-5 mt-5 cursor-pointer'}`} to='/dashboard/all-users'>All Users</Link>
                                             </div>
@@ -36,8 +37,15 @@ const DashBoard = () => {
                                             <div className="mb-10" onClick={() => setTag('allTestas')}>
                                                 <Link className={`${tag === 'allTestas' ? 'px-8 py-3 bg-white rounded-lg p-5 text-center font-bold text-lg mb-5 mt-5 cursor-pointer unique' : 'px-8 py-3 bg-white rounded-lg p-5 text-center font-bold text-lg mb-5 mt-5 cursor-pointer'}`} to='/dashboard/AllTeastas'>All Tests</Link>
                                             </div>
+                                            <div className="mb-10" onClick={() => setTag('Reservation')}>
+                                                <Link className={`${tag === 'Reservation' ? 'px-8 py-3 bg-white rounded-lg p-5 text-center font-bold text-lg mb-5 mt-5 cursor-pointer unique' : 'px-8 py-3 bg-white rounded-lg p-5 text-center font-bold text-lg mb-5 mt-5 cursor-pointer'}`} to='/dashboard/Reservation'>Reservations</Link>
+                                            </div>
+                                            <div className="mb-10" onClick={() => setTag('add-banner')}>
+                                                <Link className={`${tag === 'add-banner' ? 'px-8 py-3 bg-white rounded-lg p-5 text-center font-bold text-lg mb-5 mt-5 cursor-pointer unique' : 'px-8 py-3 bg-white rounded-lg p-5 text-center font-bold text-lg mb-5 mt-5 cursor-pointer'}`} to='/dashboard/banner'>Add Banner</Link>
+                                            </div>
                                             <div className="divider bg-white h-1"></div>
                                             {/* ================ user options ================ */}
+                                            <h1 className="text-3xl text-center font-bold">User</h1>
                                             <div className="mb-10 mt-10" onClick={() => setTag('home')}>
                                                 <Link className={`${tag === 'home' ? 'px-8 py-3 bg-white rounded-lg p-5 text-center font-bold text-lg mb-5 mt-5 cursor-pointer unique' : 'px-8 py-3 bg-white rounded-lg p-5 text-center font-bold text-lg mb-5 mt-5 cursor-pointer'}`} to='/'>Home</Link>
                                             </div>
@@ -53,6 +61,7 @@ const DashBoard = () => {
                                         </>
                                         :
                                         <>
+                                            <h1 className="text-3xl text-center font-bold">User</h1>
                                             <div className="mb-10" onClick={() => setTag('home')}>
                                                 <Link className={`${tag === 'home' ? 'px-8 py-3 bg-white rounded-lg p-5 text-center font-bold text-lg mb-5 mt-5 cursor-pointer unique' : 'px-8 py-3 bg-white rounded-lg p-5 text-center font-bold text-lg mb-5 mt-5 cursor-pointer'}`} to='/'>Home</Link>
                                             </div>

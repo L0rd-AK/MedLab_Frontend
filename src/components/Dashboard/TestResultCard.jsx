@@ -28,11 +28,13 @@ const TestResultCard = ({test}) => {
                 </td>
                 <td>{test.slots}</td>
                 <td>
-                    <Link to={`/all-tests/${test._id}`}><button className="btn btn-ghost btn-md BgPrimary">Pending</button></Link>
+                   {
+                    test?.approved?
+                    <Link><button className="btn btn-ghost btn-md BgPrimary">Print report</button></Link>
+                    :
+                    <Link><button className="btn btn-ghost btn-md BgPrimary">Pending</button></Link>
+                   }
                 </td>
-                <th>
-                    <Link to={`/all-tests/${test._id}`}><button className="btn btn-ghost btn-md BgPrimary">Print report</button></Link>
-                </th>
             </tr>
         </tbody>
     );
