@@ -3,6 +3,7 @@ import AllUserCard from "./AllUserCard";
 
 const AllUser = () => {
     const userCollection=useLoaderData();
+
     return (
         <div className="overflow-x-auto mt-10">
             <h1 className="text-left text-3xl font-bold text-black mb-5 ml-5">All Users:</h1>
@@ -20,7 +21,7 @@ const AllUser = () => {
                     </tr>
                 </thead>
                 {
-                    userCollection.map(i=> <AllUserCard key={i._id} user={i}></AllUserCard>)
+                    userCollection?.map(i=> <AllUserCard key={i._id} user={i}></AllUserCard>)
                 }
             </table>
         </div>

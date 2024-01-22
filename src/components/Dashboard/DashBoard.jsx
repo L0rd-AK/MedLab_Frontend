@@ -5,7 +5,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 const DashBoard = () => {
     const { user } = useContext(AuthContext);
     const userCollection = useLoaderData();
-    const machedUser = userCollection.find(i => i.email === user.email);
+    const machedUser = userCollection?.find(i => i.email === user.email);
     console.log(machedUser);
     const [tag, setTag] = useState('');
     return (

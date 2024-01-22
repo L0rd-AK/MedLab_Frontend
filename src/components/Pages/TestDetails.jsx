@@ -2,7 +2,6 @@ import { useContext } from 'react';
 // import { FaBusinessTime, FaLocationDot, FaSackDollar } from 'react-icons/fa6';
 import { Link, useLoaderData } from 'react-router-dom';
 // import { useLoaderData } from 'react-router-dom';
-import Swal from 'sweetalert2';
 import { AuthContext } from '../Provider/AuthProvider';
 
 
@@ -10,35 +9,8 @@ const TestDetails = () => {
     const { user } = useContext(AuthContext);
     const test = useLoaderData();
     const { testName, imageUrl, details, price, date, slots } = test;
-    const bookedDate = new Date();
 
-    let day = bookedDate.getDate();
-    let month = bookedDate.getMonth() + 1;
-    let year = bookedDate.getFullYear();
-
-    // This arrangement can be altered based on how we want the date's format to appear.
-    let currentDate = `${day}-${month}-${year}`;
-    const newTest = { testName, imageUrl, email: user.email, details, price, date, slots: slots-1,currentDate };
-
-    const handelBookedTests = () => {
-        fetch(`http://localhost:5000/appointments`, {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(newTest),
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.insertedId) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Successfully Booked',
-                    })
-                }
-                console.log(data);
-            })
-    }
+   
 
     return (
         <div className='mt-5 pb-16 bg-[#f1f5f8] '>
@@ -92,7 +64,7 @@ const TestDetails = () => {
                             <label htmlFor="default-checkbox" className="ml-2 text-sm font-medium text-black ">Get Report Alart</label>
                         </div>
 
-                        <Link to={`/paymenst/${price}`}><button  className='btn BgPrimary text-white font-semibold w-full'>Book Test</button></Link>
+                        <Link to={`/paymenst/${test._id}`}><button  className='btn BgPrimary text-white font-semibold w-full'>Book Test</button></Link>
                     </div>
                 </div>
             </div>

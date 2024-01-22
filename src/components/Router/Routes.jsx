@@ -51,13 +51,19 @@ import Payment from "../Payment/Payment";
         {
           path: '/paymenst/:id',
           element: <PrivateRoute> <Payment></Payment> </PrivateRoute>,
+          loader: ({ params }) => fetch(`http://localhost:5000/all-tests/${params.id}`)
         },
       ]
     },
     {
       path:'/dashboard',
       element: <PrivateRoute> <DashBoard></DashBoard></PrivateRoute>,
-      loader: () => fetch(`http://localhost:5000/users`),
+      loader: () => fetch(`http://localhost:5000/users`,{
+        method:'GET',
+        headers: {
+          authorization: localStorage.getItem('access-token'),
+        },
+      }),
       children:[
         {
           path: '/dashboard/profile/:id',
@@ -77,7 +83,12 @@ import Payment from "../Payment/Payment";
         {
           path: '/dashboard/all-users',
           element: <PrivateRoute><AllUser></AllUser></PrivateRoute>,
-          loader: () => fetch(`http://localhost:5000/users`),
+          loader: () => fetch(`http://localhost:5000/users`,{
+            method:'GET',
+            headers: {
+              authorization: localStorage.getItem('access-token'),
+            },
+          })
         },
         {
           path: '/dashboard/all-users/modal/:id',

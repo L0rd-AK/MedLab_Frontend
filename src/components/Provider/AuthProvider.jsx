@@ -62,14 +62,16 @@ const AuthProvider = ({ children }) => {
             setLoading(false);
                 if(currentUser){
                     const logedEmail={email:currentUser.email}
-                    // axios.post('http://localhost:5173/jwt',logedEmail,{withCredentials:true})
-                    axios.post('http://localhost:5173',logedEmail,{withCredentials:true})
+
+                    axios.post('http://localhost:5000/jwt',logedEmail,{withCredentials:true})
                     .then(res=>{
                         console.log(res.data);
-                        if(res.data.success){
-                            //navigate here
+                        if(res.data.token){
+                            localStorage.setItem('access-token',res.data.token)
                         }
                     })
+                }else{
+                    localStorage.removeItem('access-token');
                 }
         });
         return () => {
