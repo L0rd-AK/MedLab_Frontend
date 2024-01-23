@@ -44,7 +44,7 @@ const Navbar = () => {
                     <div className="navbar-end lg:mr-10 gap-3 ">
                         <div className='flex bg-[#1ca77462] rounded-full pl-8 pr-1 py-1 gap-4 justify-center items-center'>
                             <p className='text-black font-semibold '>{user.displayName}</p>
-                            <img className="rounded-full h-10 mr-5 lg:mr-0" src={user.photoURL} alt="" />
+                            <img className="rounded-full h-10 mr-5 lg:mr-0" src={user.photoURL||'https://i.ibb.co/3dqGpTW/dummy-prof.png'} alt="" />
                         </div>
                         <Link onClick={() => logOut()} to='/'><a className="btn bg-[#47ccc8] text-white border-none">Log Out</a></Link>
                     </div>

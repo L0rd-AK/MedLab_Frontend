@@ -24,7 +24,7 @@ const UpdateTest = () => {
         // const date=Postdate.current.value;
         const updatedProfile = { testName,imageUrl,price, details: User_Description,slots:parseInt(slots),date };
 
-        fetch(`http://localhost:5000/all-tests/${enol._id}`, {
+        fetch(`https://backend-server-gamma.vercel.app/all-tests/${enol._id}`, {
             method: 'PUT',
             headers: {
                 "Content-Type": "application/json",

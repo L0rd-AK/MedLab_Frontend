@@ -1,5 +1,8 @@
+import { Link } from "react-router-dom";
 
-const Banner = ({ setSearchJob }) => {
+const Banner = ({ bannerrCollection,setbannerrCollection }) => {
+
+    const bnr=bannerrCollection?.find(i=>i.isActive===true);
     const handelSearch = (e) => {
         e.preventDefault();
         const form = new FormData(e.currentTarget);
@@ -8,7 +11,7 @@ const Banner = ({ setSearchJob }) => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                setSearchJob(data);
+                setbannerrCollection(data);
             })
     }
     return (
@@ -18,17 +21,19 @@ const Banner = ({ setSearchJob }) => {
             <div className="flex gap-5">
                 <div className="hero-content text-left text-neutral-content">
                     <div className="">
-                        <h1 className="mb-5 text-5xl font-bold text-black">Your Health is our<br /> Top <span className='text-[#48eaffcb]'>Priority</span></h1>
-                        <p className="mb-5 text-black font-semibold">Get the answers you need for a healthier you at our <br /> medical diagnostic center.</p>
-                        <p className="mb-5 text-black font-semibold">Use the Coupon code <span className="font-bold text-[#48eaffcb]">MedLab20</span> to get 20% of on any of our Services.</p>
+                        <h1 className="mb-5 text-5xl font-bold text-black">{bnr?.title}</h1>
+                        <p className="mb-5 text-black font-semibold">{bnr?.description}</p>
+                        <p className="mb-5 text-black font-semibold">Use the Coupon code <span className="font-bold text-[#48eaffcb]">{bnr?.couponCode}</span> to get {bnr?.couponRate}% of on any of our Services.</p>
                         <div className="">
-                            <button className="btn bg-[#48eaffcb] px-5 py-2 border-none font-bold text-white hover:btn-outline mt-5 lg:mt-0">Use Coupon MadLab20</button>
+                            <button className="btn bg-[#48eaffcb] px-5 py-2 border-none font-bold text-white hover:btn-outline mt-5 lg:mt-0">Use Coupon {bnr?.couponCode}</button>
+                            <Link to='/all-tests'>
                             <button className="ml-5 btn bg-[#13e3ff96] px-5 py-2 border-none font-bold text-white hover:btn-outline mt-5 lg:mt-0">All Test</button>
+                            </Link>
                         </div>
                     </div>
                 </div>
                 <div>
-                    <img className="h-[600px] w-full mt-[50px]" src="https://mida.peerduck.com/wp-content/uploads/2023/03/k4lmtg-1536x1500.png" alt="" />
+                    <img className="h-[600px] w-full mt-[50px]" src={bnr?.image} alt="" />
                 </div>
             </div>
         </div>

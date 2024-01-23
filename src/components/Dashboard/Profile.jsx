@@ -7,7 +7,7 @@ const Profile = () => {
     const countryType = useRef();
     const stateType = useRef();
     const userCollection = useLoaderData();
-    console.log(userCollection);
+    // console.log(userCollection);
     // ======================================================================
     useEffect(()=>{
         fetch('/countryData.json')
@@ -50,7 +50,7 @@ const Profile = () => {
         })
         const updatedProfile = { name,selected_BloodType,Country,State,User_Description: User_Description };
 
-        fetch(`http://localhost:5000/users/${userCollection._id}`,{
+        fetch(`https://backend-server-gamma.vercel.app/users/${userCollection._id}`,{
             method: 'PUT',
             headers: {
                 "Content-Type": "application/json",
@@ -65,7 +65,7 @@ const Profile = () => {
                         title: 'Profile has been Updated',
                     })
                 }
-                console.log(data);
+                // console.log(data);
             })
     }
 

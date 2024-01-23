@@ -26,7 +26,7 @@ const Add_a_test = () => {
         // const date=Postdate.current.value;
         const updatedProfile = { testName,imageUrl,price, details: User_Description,slots:parseInt(slots),date };
 
-        fetch(`http://localhost:5000/all-tests`, {
+        fetch(`https://backend-server-gamma.vercel.app/all-tests`, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -41,7 +41,7 @@ const Add_a_test = () => {
                         title: 'Profile has been Updated',
                     })
                 }
-                console.log(data);
+                // console.log(data);
             })
     }
 

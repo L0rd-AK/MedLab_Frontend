@@ -18,7 +18,7 @@ const AllUserCard = ({ user }) => {
             if (result.isConfirmed) {
                 // ============
                 const updatedProfile={isAdmin: true}
-                fetch(`http://localhost:5000/makeAdmin/${id}`, {
+                fetch(`https://backend-server-gamma.vercel.app/makeAdmin/${id}`, {
                     method: 'PUT',
                     headers: {
                         "Content-Type": "application/json",
@@ -34,7 +34,7 @@ const AllUserCard = ({ user }) => {
                                 icon: "success"
                             });
                         }
-                        console.log(data);
+                        // console.log(data);
                         location.reload();
                     })
                 // ============
@@ -56,7 +56,7 @@ const AllUserCard = ({ user }) => {
                 if (result.isConfirmed) {
                     // ============
                     const updatedProfile={status: false}
-                    fetch(`http://localhost:5000/block/${id}`, {
+                    fetch(`https://backend-server-gamma.vercel.app/block/${id}`, {
                         method: 'PUT',
                         headers: {
                             "Content-Type": "application/json",
@@ -72,7 +72,7 @@ const AllUserCard = ({ user }) => {
                                     icon: "success"
                                 });
                             }
-                            console.log(data);
+                            // console.log(data);
                             location.reload();
                         })
                     // ============
@@ -92,7 +92,7 @@ const AllUserCard = ({ user }) => {
                 if (result.isConfirmed) {
                     // ============
                     const updatedProfile={status: true}
-                    fetch(`http://localhost:5000/block/${id}`, {
+                    fetch(`https://backend-server-gamma.vercel.app/block/${id}`, {
                         method: 'PUT',
                         headers: {
                             "Content-Type": "application/json",
@@ -108,7 +108,7 @@ const AllUserCard = ({ user }) => {
                                     icon: "success"
                                 });
                             }
-                            console.log(data);
+                            // console.log(data);
                             location.reload();
                         })
                     // ============

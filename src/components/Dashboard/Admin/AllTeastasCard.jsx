@@ -15,7 +15,7 @@ const AllTeastasCard = ({test}) => {
             confirmButtonText: 'Yes, delete it!'
           }).then((result) => {
             if (result.isConfirmed) {
-              fetch(`http://localhost:5000/all-tests/${_id}`, {
+              fetch(`https://backend-server-gamma.vercel.app/all-tests/${_id}`, {
                 method: "DELETE",
                 headers: {
                     'content-type': 'application/json'

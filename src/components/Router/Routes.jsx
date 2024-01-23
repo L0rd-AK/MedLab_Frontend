@@ -20,6 +20,9 @@ import UpdateTest from "../Dashboard/Admin/UpdateTest";
 import Reservation from "../Dashboard/Admin/Reservation";
 import ReservationCARD from "../Dashboard/Admin/ReservationCARD";
 import Payment from "../Payment/Payment";
+import AllBanners from "../Dashboard/Admin/AllBanners";
+import UpdateBanner from "../Dashboard/Admin/UpdateBanner";
+import AddBanner from "../Dashboard/Admin/AddBanner";
 
   export const router = createBrowserRouter([
     {
@@ -46,19 +49,19 @@ import Payment from "../Payment/Payment";
         {
           path: '/all-tests/:id',
           element: <PrivateRoute><TestDetails></TestDetails></PrivateRoute>,
-          loader: ({ params }) => fetch(`http://localhost:5000/all-tests/${params.id}`)
+          loader: ({ params }) => fetch(`https://backend-server-gamma.vercel.app/all-tests/${params.id}`)
         },
         {
           path: '/paymenst/:id',
           element: <PrivateRoute> <Payment></Payment> </PrivateRoute>,
-          loader: ({ params }) => fetch(`http://localhost:5000/all-tests/${params.id}`)
+          loader: ({ params }) => fetch(`https://backend-server-gamma.vercel.app/all-tests/${params.id}`)
         },
       ]
     },
     {
       path:'/dashboard',
       element: <PrivateRoute> <DashBoard></DashBoard></PrivateRoute>,
-      loader: () => fetch(`http://localhost:5000/users`,{
+      loader: () => fetch(`https://backend-server-gamma.vercel.app/users`,{
         method:'GET',
         headers: {
           authorization: localStorage.getItem('access-token'),
@@ -68,22 +71,22 @@ import Payment from "../Payment/Payment";
         {
           path: '/dashboard/profile/:id',
           element: <PrivateRoute><Profile></Profile></PrivateRoute>,
-          loader: ({ params }) => fetch(`http://localhost:5000/users/${params.id}`)
+          loader: ({ params }) => fetch(`https://backend-server-gamma.vercel.app/users/${params.id}`)
         },
         {
           path: '/dashboard/appointments/:id',
           element: <PrivateRoute><UpcomingAppointments></UpcomingAppointments></PrivateRoute>,
-          loader: ({params})=>fetch(`http://localhost:5000/appointments/${params.id}`)
+          loader: ({params})=>fetch(`https://backend-server-gamma.vercel.app/appointments/${params.id}`)
         },
         {
           path: '/dashboard/test-results/:id',
           element: <PrivateRoute><TestResults></TestResults></PrivateRoute>,
-          loader: ({params})=>fetch(`http://localhost:5000/appointments/${params.id}`)
+          loader: ({params})=>fetch(`https://backend-server-gamma.vercel.app/appointments/${params.id}`)
         },
         {
           path: '/dashboard/all-users',
           element: <PrivateRoute><AllUser></AllUser></PrivateRoute>,
-          loader: () => fetch(`http://localhost:5000/users`,{
+          loader: () => fetch(`https://backend-server-gamma.vercel.app/users`,{
             method:'GET',
             headers: {
               authorization: localStorage.getItem('access-token'),
@@ -93,22 +96,22 @@ import Payment from "../Payment/Payment";
         {
           path: '/dashboard/all-users/modal/:id',
           element: <Modal></Modal>,
-          loader: ({ params }) => fetch(`http://localhost:5000/users/${params.id}`),
+          loader: ({ params }) => fetch(`https://backend-server-gamma.vercel.app/users/${params.id}`),
         },
         {
           path: '/dashboard/add-a-test',
           element: <PrivateRoute><Add_a_test></Add_a_test></PrivateRoute>,
-          loader: ({ params }) => fetch(`http://localhost:5000/users/${params.id}`),
+          loader: ({ params }) => fetch(`https://backend-server-gamma.vercel.app/users/${params.id}`),
         },
         {
           path: '/dashboard/AllTeastas',
           element: <PrivateRoute><AllTeastas></AllTeastas></PrivateRoute>,
-          loader: () => fetch(`http://localhost:5000/all-tests`),
+          loader: () => fetch(`https://backend-server-gamma.vercel.app/all-tests`),
         },
         {
           path: '/dashboard/update-test/:id',
           element: <PrivateRoute><UpdateTest></UpdateTest></PrivateRoute>,
-          loader: ({ params }) => fetch(`http://localhost:5000/all-tests/${params.id}`)
+          loader: ({ params }) => fetch(`https://backend-server-gamma.vercel.app/all-tests/${params.id}`)
         },
         {
           path: '/dashboard/Reservation',
@@ -117,6 +120,20 @@ import Payment from "../Payment/Payment";
         {
           path: '/dashboard/Reservation/:id',
           element: <PrivateRoute><ReservationCARD></ReservationCARD></PrivateRoute>
+        },
+        {
+          path: '/dashboard/all-banners',
+          element: <PrivateRoute><AllBanners></AllBanners></PrivateRoute>,
+          loader: () => fetch(`https://backend-server-gamma.vercel.app/all-banners`),
+        },
+        {
+          path: '/dashboard/update-banner/:id',
+          element: <PrivateRoute><UpdateBanner></UpdateBanner></PrivateRoute>,
+          loader: ({ params }) => fetch(`https://backend-server-gamma.vercel.app/all-banners/${params.id}`)
+        },
+        {
+          path: '/dashboard/add-banner',
+          element: <PrivateRoute><AddBanner></AddBanner></PrivateRoute>
         }
 
       ]

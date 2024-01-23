@@ -9,15 +9,20 @@ const AllTest = () => {
     const [machedUser,setmachedUser]=useState(null);
     console.log(machedUser);
     useEffect(() => {
-        fetch(`http://localhost:5000/users/${user?.email}`)
+        fetch(`https://backend-server-gamma.vercel.app/users/${user?.email}`)
         .then(res => res.json())
         .then(data => {
-            console.log(data);
+            // console.log(data);
             setmachedUser(data)
         })
     }, [user.email])
     useEffect(() => {
-        fetch('http://localhost:5000/all-tests')
+        fetch('https://backend-server-gamma.vercel.app/all-tests',{
+            method:'GET',
+            headers: {
+              authorization: localStorage.getItem('access-token'),
+            },
+        })
         .then(res => res.json())
         .then(data => setAllTest(data))
     }, [])

@@ -3,7 +3,7 @@ import AppointmentCard from "./AppointmentCard";
 
 const UpcomingAppointments = () => {
     const appointments=useLoaderData();
-    console.log(appointments);
+    // console.log(appointments);
     return (
         <div className="overflow-x-auto mt-10">
             <h1 className="text-left text-3xl font-bold text-black mb-5 ml-5">Upcomming Appointments:</h1>

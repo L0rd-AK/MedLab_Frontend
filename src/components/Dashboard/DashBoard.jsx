@@ -1,4 +1,4 @@
-import { Link, Outlet, useLoaderData } from "react-router-dom";
+import { Link, Outlet, useLoaderData, useLocation } from "react-router-dom";
 import './DashBoard.css'
 import { useContext, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
@@ -6,8 +6,10 @@ const DashBoard = () => {
     const { user } = useContext(AuthContext);
     const userCollection = useLoaderData();
     const machedUser = userCollection?.find(i => i.email === user.email);
-    console.log(machedUser);
+    // console.log(machedUser);
     const [tag, setTag] = useState('');
+    const location=useLocation();
+    // console.log(location.pathname);
     return (
         <>
             {
@@ -41,7 +43,10 @@ const DashBoard = () => {
                                                 <Link className={`${tag === 'Reservation' ? 'px-8 py-3 bg-white rounded-lg p-5 text-center font-bold text-lg mb-5 mt-5 cursor-pointer unique' : 'px-8 py-3 bg-white rounded-lg p-5 text-center font-bold text-lg mb-5 mt-5 cursor-pointer'}`} to='/dashboard/Reservation'>Reservations</Link>
                                             </div>
                                             <div className="mb-10" onClick={() => setTag('add-banner')}>
-                                                <Link className={`${tag === 'add-banner' ? 'px-8 py-3 bg-white rounded-lg p-5 text-center font-bold text-lg mb-5 mt-5 cursor-pointer unique' : 'px-8 py-3 bg-white rounded-lg p-5 text-center font-bold text-lg mb-5 mt-5 cursor-pointer'}`} to='/dashboard/banner'>Add Banner</Link>
+                                                <Link className={`${tag === 'add-banner' ? 'px-8 py-3 bg-white rounded-lg p-5 text-center font-bold text-lg mb-5 mt-5 cursor-pointer unique' : 'px-8 py-3 bg-white rounded-lg p-5 text-center font-bold text-lg mb-5 mt-5 cursor-pointer'}`} to='/dashboard/add-banner'>Add Banner</Link>
+                                            </div>
+                                            <div className="mb-10" onClick={() => setTag('All-banners')}>
+                                                <Link className={`${tag === 'All-banners' ? 'px-8 py-3 bg-white rounded-lg p-5 text-center font-bold text-lg mb-5 cursor-pointer unique' : 'px-8 py-3 bg-white rounded-lg p-5 text-center font-bold text-lg mb-5 cursor-pointer'}`} to={`/dashboard/all-banners`}>All Banners</Link>
                                             </div>
                                             <div className="divider bg-white h-1"></div>
                                             {/* ================ user options ================ */}
@@ -58,6 +63,7 @@ const DashBoard = () => {
                                             <div className="mb-10" onClick={() => setTag('results')}>
                                                 <Link className={`${tag === 'results' ? 'px-8 py-3 bg-white rounded-lg p-5 text-center font-bold text-lg mb-5 cursor-pointer unique' : 'px-8 py-3 bg-white rounded-lg p-5 text-center font-bold text-lg mb-5 cursor-pointer'}`} to={`/dashboard/test-results/${user.email}`}>Test Results</Link>
                                             </div>
+                                            
                                         </>
                                         :
                                         <>
@@ -78,8 +84,12 @@ const DashBoard = () => {
                                 }
                             </div>
                             <div className="grid col-span-3">
-                                {/* <h1 className="text-black font-bold text-5xl text-center mt-5 mb-0">User DashBoard</h1> */}
-                                <Outlet></Outlet>
+                                {
+                                    location.pathname==='/dashboard'?
+                                    <h1 className="flex justify-center items-center text-5xl text-[#48eaffcb] font-bold text-center">Welcome to DashBord <br />Navigate through dashboard using sidebar</h1>:
+                                    <Outlet></Outlet>
+                                }
+                                
                             </div>
                         </div>
                     </>

@@ -89,7 +89,7 @@ const Register = () => {
                 .then(result => {
                     upDateProfile(Name, img);
                     const newUser = { email, password, Name, Blood,image:img, Country, State,status:"active",isAdmin: false }
-                    fetch(`http://localhost:5000/users`, {
+                    fetch(`https://backend-server-gamma.vercel.app/users`, {
                         method: 'POST',
                         headers: {
                             "Content-Type": "application/json",

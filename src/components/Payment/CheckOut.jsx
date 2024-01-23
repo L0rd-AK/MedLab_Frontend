@@ -22,7 +22,7 @@ const CheckOut = ({ test }) => {
     const newTest = { testName, imageUrl, email: user.email, details, price, date, slots: slots-1,currentDate };
 
     const handelBookedTests = () => {
-        fetch(`http://localhost:5000/appointments`, {
+        fetch(`https://backend-server-gamma.vercel.app/appointments`, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -37,13 +37,13 @@ const CheckOut = ({ test }) => {
                         title: 'Successfully Booked',
                     })
                 }
-                console.log(data);
+                // console.log(data);
             })
     }
     //==========================
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://backend-server-gamma.vercel.app/create-payment-intent", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ price: parseInt(price) }),
@@ -51,7 +51,7 @@ const CheckOut = ({ test }) => {
             .then((res) => res.json())
             .then((data) => {
                 setClientSecret(data.clientSecret)
-                console.log(data);
+                // console.log(data);
             });
     }, [price]);
 
