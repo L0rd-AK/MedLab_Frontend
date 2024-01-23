@@ -14,6 +14,7 @@ const AllBanners = () => {
                         <th>Banner Title</th>
                         <th>Coupon Code</th>
                         <th>Coupon Rate</th>
+                        <th>Status</th>
                         <th>Update</th>
                         <th>Delete</th>
                     </tr>

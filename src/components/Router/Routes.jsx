@@ -106,7 +106,12 @@ import AddBanner from "../Dashboard/Admin/AddBanner";
         {
           path: '/dashboard/AllTeastas',
           element: <PrivateRoute><AllTeastas></AllTeastas></PrivateRoute>,
-          loader: () => fetch(`https://backend-server-gamma.vercel.app/all-tests`),
+          loader: () => fetch(`https://backend-server-gamma.vercel.app/all-tests`,{
+            method:'GET',
+            headers: {
+              authorization: localStorage.getItem('access-token'),
+            },
+          }),
         },
         {
           path: '/dashboard/update-test/:id',

@@ -67,7 +67,7 @@ const DashBoard = () => {
                                         </>
                                         :
                                         <>
-                                            <h1 className="text-3xl text-center font-bold">User</h1>
+                                            <h1 className="text-3xl text-center font-bold mb-10">User</h1>
                                             <div className="mb-10" onClick={() => setTag('home')}>
                                                 <Link className={`${tag === 'home' ? 'px-8 py-3 bg-white rounded-lg p-5 text-center font-bold text-lg mb-5 mt-5 cursor-pointer unique' : 'px-8 py-3 bg-white rounded-lg p-5 text-center font-bold text-lg mb-5 mt-5 cursor-pointer'}`} to='/'>Home</Link>
                                             </div>

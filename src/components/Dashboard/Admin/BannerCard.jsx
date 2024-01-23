@@ -3,6 +3,25 @@ import Swal from "sweetalert2";
 
 const BannerCard = ({test}) => {
     // ======= update banner =============
+    const updateStatus=()=>{
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, show this Banner!!!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire({
+                title: "Success!",
+                text: "Banner set to homepage.",
+                icon: "success"
+              });
+            }
+          });
+    }
     // ======= delete banner =============
     const handelDelete=(_id)=>{
         Swal.fire({
@@ -58,6 +77,13 @@ const BannerCard = ({test}) => {
                 {test.couponCode}
             </td>
             <td>{test.couponRate}%</td>
+            <td>
+                {
+                 test?.isActive?
+                 <button className="btn btn-ghost btn-md bg-success">Active</button>:
+                 <button onClick={()=>updateStatus()} className="btn btn-ghost btn-md BgPrimary">idle</button>
+                }
+            </td>
             <td>
                 <Link to={`/dashboard/update-banner/${test._id}`}><button className="btn btn-ghost btn-md BgPrimary">Update</button></Link>
             </td>

@@ -12,6 +12,7 @@ const CheckOut = ({ test }) => {
     const elements = useElements();
     //================ show modal on payment succees ==========
     const { testName, imageUrl, details, price, date, slots } = test;
+    
     const bookedDate = new Date();
     let day = bookedDate.getDate();
     let month = bookedDate.getMonth() + 1;
