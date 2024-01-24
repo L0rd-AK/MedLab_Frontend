@@ -88,7 +88,7 @@ const Register = () => {
             createUser(email, password)
                 .then(result => {
                     upDateProfile(Name, img);
-                    const newUser = { email, password, Name, Blood,image:img, Country, State,status:"active",isAdmin: false }
+                    const newUser = { email, password, Name, Blood,image:img, Country, State,status:false,isAdmin: false }
                     fetch(`https://backend-server-gamma.vercel.app/users`, {
                         method: 'POST',
                         headers: {

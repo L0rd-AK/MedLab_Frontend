@@ -50,7 +50,7 @@ const Profile = () => {
         })
         const updatedProfile = { name,selected_BloodType,Country,State,User_Description: User_Description };
 
-        fetch(`https://backend-server-gamma.vercel.app/users/${userCollection._id}`,{
+        fetch(`https://backend-server-gamma.vercel.app/users/${userCollection.email}`,{
             method: 'PUT',
             headers: {
                 "Content-Type": "application/json",
@@ -128,7 +128,7 @@ const Profile = () => {
                             
                             <div className="sm:col-span-2">
                                 <label name="description" className="block mb-2 text-sm font-medium text-black">Description</label>
-                                <textarea defaultValue={userCollection.Job_Description} name='description' id="description" rows="8" className="input input-bordered input-accent w-full bg-transparent h-24" placeholder="Your description here"></textarea>
+                                <textarea defaultValue={userCollection.User_Description} name='description' id="description" rows="8" className="input input-bordered input-accent w-full bg-transparent h-24" placeholder="Your description here"></textarea>
                             </div>
                         </div>
                         <button type="submit" className="BgPrimary inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">

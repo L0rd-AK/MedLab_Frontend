@@ -26,7 +26,7 @@ const DashBoard = () => {
                         <div className="grid grid-cols-4">
                             <div className="min-h-screen BgPrimary p-10">
                                 {
-                                    machedUser.isAdmin ?
+                                    machedUser?.isAdmin ?
                                         <>
                                             {/* ================ Admin options ================ */}
                                             <h1 className="text-3xl text-center font-bold mb-10">Admin</h1>
